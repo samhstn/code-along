@@ -1,0 +1,9 @@
+#!/bin/sh
+
+CURRENT_DIRECTORY=$(pwd)
+
+cd $HOME/proj/code-along/elixir-in-action/todo
+
+MIX_ENV=test mix do format --check-formatted, test
+
+cd $CURRENT_DIRECTORY
