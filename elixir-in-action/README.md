@@ -27,15 +27,15 @@ BEAM (the erlang virtual machine) uses its own schedulers to distribute the proc
 
 Fault tolerance - Erlang processes are completely isolated from each other as Erlang processes share no memory.
 Scalability - Erlang processes communicate via asynchronous messages, each process is efficiently parallelized and can take advantage of all CPU cores.
-Distribution - Communication between processes works the same way regardless of if processes reside in the same BEAM, so ready to be distrubuted over multiple machines.
+Distribution - Communication between processes works the same way regardless of if processes reside in the same BEAM, so ready to be distributed over multiple machines.
 Responsiveness - Erlang handles the execution of multiple process by employing dedicated schedulers that interchangeably execute many processes.
                  A scheduler is preemptive - it gives a small execution window to each process, then pauses it and runs another process.
                  As the execution window is small, a single long-running process can't block the rest of the system.
 
-Erlang is more than a programming language, it's a full-blown development platform with 4 distinct parts: the language, the virual machine, the framework and the tools.
+Erlang is more than a programming language, it's a full-blown development platform with 4 distinct parts: the language, the virtual machine, the framework and the tools.
 
-The language is the primary way of writing code that runs in the Eralng virtual machine. It's a simple functional language with basic concurrency primitives.
-Tis is compiled to bytecode which is executed in the BEAM.
+The language is the primary way of writing code that runs in the Erlang virtual machine. It's a simple functional language with basic concurrency primitives.
+This is compiled to bytecode which is executed in the BEAM.
 BEAM parallelizes the concurrent Erlang programs and takes care of process isolation, distribution and system responsiveness.
 
 The OTP framework (which ships with Erlang) abstracts away many typical Erlang tasks:
@@ -49,7 +49,7 @@ OPT has tools to: compile Erlang code, start a BEAM instance, create deployable 
 
 Elixir is an alternative language for the Erlang virtual machine that allows you to write cleaner code.
 Elixir source code compiles to BEAM-compliant bytecode that can run in a BEAM instance.
-Elixir can cooperate with pure erlang code and visa versa and Elixir libraries are as performant as their Erlang counterpart.
+Elixir can cooperate with pure Erlang code and visa versa and Elixir libraries are as performant as their Erlang counterpart.
 
 Erlang has shortcomings in both speed and ecosystem.
 Erlang wasn't build for speed, but for reliability and consistency.
@@ -58,7 +58,7 @@ Erlang wasn't build for speed, but for reliability and consistency.
 
 Elixir data can't be mutated. The result of modifying input data resides in another memory location.
 New variables created by referencing another variable will contain a shallow copy of the initial data.
-When you rebind a variable, the variable references another memory location and the old locatino isn't accessible and is available for garbage collection.
+When you rebind a variable, the variable references another memory location and the old location isn't accessible and is available for garbage collection.
 
 When modifying the nth element of a list, the new version will contain shallow copies of the first n-1 elements, followed by the modified element.
 So adding elements to the end of a list is expensive - to append a new element at the tail, you have to iterate and (shallow) copy the entire list.
@@ -78,7 +78,7 @@ Check out `Kernel.put_in` and `Kernel.get_and_update_in` docs (https://hexdocs.p
 
 Polymorphism is a runtime decision about which code to execute based on the input data. In Elixir, the basic way of doing this is through protocols.
 
-Protocols allow us to extend the original behavior for as many data types as we need.
+Protocols allow us to extend the original behaviour for as many data types as we need.
 
 ## 5 Concurrency primitives
 
@@ -165,7 +165,7 @@ if none of these conditions are met, you probably don't need a separate process 
 
 If you handle the requests concurrently, this has the same drawbacks as concurrency is unbounded, so too many simultaneous clients might overload the disk I/O.
 
-A typical remedy for this problem is pooling. For example, you database process might create 3 worker processes and keep thier pids in its internal state.
+A typical remedy for this problem is pooling. For example, you database process might create 3 worker processes and keep their pids in its internal state.
 When a request arrives, it's delegated to one of the worker processes.
 
 Task: change `Todo.Database` to use a pool of processes (pg 199)
@@ -174,7 +174,7 @@ Task: change `Todo.Database` to use a pool of processes (pg 199)
 
 When a process crashes, we usually want to detect this state and do something about it.
 
-When a runtime error happens, execution control is transferred upthe call stack to the error-handling code.
+When a runtime error happens, execution control is transferred up the call stack to the error-handling code.
 
 Compared to c++, c#, java and javascript, there's much less need to catch runtime errors - we instead adopt the 'let it crash' mindset.
 
@@ -210,7 +210,7 @@ Restart strategies:
 + `:one_for_all` - when one child crashes, all children are restarted (useful when there's a tight dependency in all directions - every sibling depends on other siblings).
 + `:rest_for_one` - when a child crashes, the supervisor restarts all younger siblings of the crashed child (useful if younger siblings depend on older ones).
 
-Using `Supervisors` instead of `GenServer` can be used to localize the impace of an error.
+Using `Supervisors` instead of `GenServer` can be used to localize the impact of an error.
 
 The Elixir standard library includes a `Registry` module for process registry, it allows you to associate a process with a key.
 This key can be subsequently looked up.
@@ -239,7 +239,7 @@ ETS tables are useful if you want to share system-wide state without introducing
 An OTP application is a component that consists of multiple modules and that can depend on other applications.
 
 If we have a `def application` in our mix file, created when running `mix new --sup ...`, then the application will start when you run `iex -S mix`.
-The critial part of our `mix.exs` file here is `mod: {App, []}`, specified by `application/0`.
+The critical part of our `mix.exs` file here is `mod: {App, []}`, specified by `application/0`.
 When you start the application, the function `App.Applicatoin.start/2` is called with `[]`.
 
 It is useful after running an application to run `iex -S mix`, then `:observer.start()`.
