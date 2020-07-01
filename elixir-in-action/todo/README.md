@@ -1,21 +1,45 @@
 # Todo
 
-**TODO: Add description**
-
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `todo` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:todo, "~> 0.1.0"}
-  ]
-end
+```bash
+mix do deps.get, compile
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/todo](https://hexdocs.pm/todo).
+## Start the development server
 
+```bash
+iex -S mix
+```
+
+## Run the tests
+
+```bash
+mix test
+```
+
+## Production release and start the server
+
+Build our release
+
+```bash
+mix release
+```
+
+Start the system in foreground
+
+```bash
+_build/prod/rel/todo/bin/todo start
+```
+
+Start the system in background
+
+```bash
+_build/prod/rel/todo/bin/todo daemon
+```
+
+Stop the background system
+
+```bash
+_build/prod/rel/todo/bin/todo stop
+```

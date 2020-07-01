@@ -266,3 +266,104 @@ The cluster we've created works, but there are remaining issues to address which
 + New node data synchronization.
 + Two phase commit database strategy.
 + Handling of network partitions.
+
+# 13 Running the system
+
+Running the system amounts to the following:
+1. Compile all modules into `.beam` files.
+2. Start the BEAM instance and set up load paths to include all locations from step 1.
+3. Start all required OTP applications.
+
+This all happens when we run `iex -S mix`. In production, we would instead want to run: `mix run --no-halt` - which won't start the interactive shell.
+
+To start a detached system (for production), we run:
+
+```bash
+MIX_ENV=prod elixir --erl "-detached" --sname todo_system@localhost -S mix run --no-halt
+# we can check this is running with:
+epmd -names
+# we can connect to a running BEAM instance with:
+iex --sname debugger@localhost --remsh todo_system@localhost --hidden
+```
+
+#### OTP releases
+
+An OTP release is a stand-alone, compiled, runnable system that consists of the minimum set of OTP applications needed by the system.
+A release doesn't contain artefacts, such as source code, documentation files or tests.
+This allows us to build the system on our development machine and ship only the binary artefacts.
+This means that the host machine doesn't need to have any tools installed - including needing Erlang or Elixir.
+
+We use distillery for releases here, instructions are in `todo/README.md`.
+
+Analysing system behaviour would take a book, a recommended great place to start is: Stuff Goes Bad: Erlang in Anger the free eBook (http://www.erlang-in-anger.com).
+
+Erlang ships with a GUI-based debugger (http://erlang.org/doc/apps/debugger/debugger_chapter.html) that can be invoked with:
+
+```iex
+:debugger.start()
+```
+
+We can also use the observer GUI application and connect to a remote node.
+The production system doesn't need to run the observer application, but it needs to contain modules that gather data for the remote observer application.
+
+This can be done in our `mix.exs` file:
+
+```elixir
+...
+
+def application do
+  [
+    extra_applications: [:logger, :runtime_tools]
+  ]
+end
+...
+```
+
+Debugging highly concurrent systems are difficult as breakpoints are less feasible.
+
+We instead should opt for logging and tracing. When something goes wrong, we want as much information as possible.
+
+A debugging overview can be found here: https://elixir-lang.org/getting-started/debugging.html.
+
+We should also consider benchmarking and profiling tools to aid in debugging.
+
+In production, we shouldn't rely on `IO.inspect`, instead we should rely on a logger application, see: https://hexdocs.pm/logger/Logger.html.
+
+To turn on tracing do the following:
+
+In one window start the server:
+
+```bash
+_build/dev/rel/todo/bin/todo start
+```
+
+Connect to the instance in another window:
+
+```bash
+_build/dev/rel/todo/bin/todo remote
+```
+
+When we hit a todo list we initially don't see any trace:
+
+```bash
+curl "http://localhost:5454/entries?list=bob&date=2018-12-19"
+```
+
+But in the `remote` window, if we run:
+
+```bash
+:sys.trace(Todo.Cache.server_process("bob"), true)
+```
+
+We see tracing whenever we touch that todo list.
+
+We can turn off tracing by setting:
+
+```bash
+:sys.trace(Todo.Cache.server_process("bob"), false)
+```
+
+13.3 Analysing system behaviour (pg 371).
+(Finish pg 376).
+
+
