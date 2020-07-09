@@ -66,9 +66,11 @@ removeAll(X, [Y|Xs]) ->
   [Y | removeAll(X, Xs)].
 
 % palindrome("Madam I\'m Adam.") = true
+-spec palindrome([string()]) -> boolean().
 palindrome(Xs) ->
   palin(nocaps(nopunct(Xs))).
 
+-spec nopunct(string()) -> string().
 nopunct([]) ->
   [];
 nopunct([X|Xs]) ->
@@ -77,6 +79,7 @@ nopunct([X|Xs]) ->
     false -> [X|nopunct(Xs)]
   end.
 
+-spec nocaps(string()) -> string().
 nocaps([]) ->
   [];
 nocaps([X|Xs]) ->
