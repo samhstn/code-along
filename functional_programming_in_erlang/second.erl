@@ -5,7 +5,7 @@ hypo(X,Y) ->
   math:sqrt(first:square(X)+first:square(Y)).
 
 perim(X,Y) ->
-  X+Y+hyp(X,Y).
+  X+Y+hypo(X,Y).
 
 area(X,Y) ->
   X*Y/2.
