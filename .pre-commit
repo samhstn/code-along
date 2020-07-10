@@ -2,8 +2,17 @@
 
 CURRENT_DIRECTORY=$(pwd)
 
+if [ "$(diff $HOME/proj/code-along/{.,.git/hooks/}pre-commit )" != "" ]; then
+  echo "pre-commit hook is not up to date"
+  exit 1
+fi
+
 cd $HOME/proj/code-along/elixir-in-action/todo
 
 MIX_ENV=test mix do format --check-formatted, test
+
+cd $HOME/proj/code-along/functional_programming_in_erlang
+
+typer *.erl > /dev/null
 
 cd $CURRENT_DIRECTORY
