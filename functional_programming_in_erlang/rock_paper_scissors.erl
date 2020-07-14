@@ -22,10 +22,9 @@ result(scissors,rock) -> lose;
 result(scissors,paper) -> win;
 result(scissors,scissors) -> draw.
 
-result_to_num(win) -> 1;
-result_to_num(lose) -> -1;
-result_to_num(draw) -> 0.
+outcome(win) -> 1;
+outcome(lose) -> -1;
+outcome(draw) -> 0.
 
 tournament(Rounds1,Rounds2) ->
-  reduce(fun({X,Y},Acc) -> Acc+result_to_num(result(X,Y)) end, 0, zip(Rounds1,Rounds2)).
-
+  reduce(fun({X,Y},Acc) -> Acc+outcome(result(X,Y)) end, 0, zip(Rounds1,Rounds2)).
