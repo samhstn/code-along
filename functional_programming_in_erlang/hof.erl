@@ -16,7 +16,12 @@ id(X) ->
 
 % Takes a number N and returns a function that takes a function and returns that function
 % iterated N times. When N is zero it returns the identity function.
-iterate(N) -> fun(F) -> compose_list(lists:duplicate(N, F)) end.
+iterate(0) ->
+  fun(_F) ->
+      fun id/1 end;
+iterate(N) ->
+  fun(F) ->
+      compose(F, (iterate(N-1))(F)) end.
 
 % Instructed to write in the shell:
 %
