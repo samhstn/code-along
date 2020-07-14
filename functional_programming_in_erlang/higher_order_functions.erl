@@ -1,5 +1,5 @@
--module(higher_order_shapes).
--export([all_areas/1,circles/1,sum/1,doubleAll/1,evens/1,product/1,zip/2,zip_with/3]).
+-module(higher_order_functions).
+-export([all_areas/1,circles/1,sum/1,doubleAll/1,evens/1,product/1,zip/2,zip_with/3,reduce/3]).
 
 map(_F,[]) -> [];
 map(F,[X|Xs]) -> [F(X)|map(F,Xs)].
