@@ -19,6 +19,23 @@ $ erl
 
 When writing the factorial function, we think about how to handle the negative case. We should opt for a `when` test for N>0. Now when we use a negative number, we get a failure of pattern matching, this is an example of the Erlang philosophy of "let it fail". We don't know what we should do in the N<0 case, so we let it fail and let the caller handle.
 
+Q: Which of the following statements about the time complexity of calling foo(Xs) is true?
+
+```erlang
+foo([X|Xs]) -> bar(foo(Xs),[X]);
+foo([])     -> [].
+
+bar([],Ys) -> Ys;
+bar([Z|Zs],Ys) -> [Z|bar(Zs,Ys)].
+```
+
+A: 'It is quadratic in the length of Xs.'
+Not: 'It is logarithmic in the length of Xs'.
+Not: 'It is linear in the length of Xs.'
+Not: 'It is exponential in the length of Xs.'
+
+Explanation: bar is linear in its first argument, but it is called recursively for each N length less than the length of Xs, hence the complexity is quadratic.
+
 We can't put user defined functions in guards, this is because we want pattern matching to always terminate and to be computed quickly. This is achieved through only allowing simple calculations.
 
 Erlang is weekly typed, but we can use Typer, which is built on top of Dyalyzer, to help us.
