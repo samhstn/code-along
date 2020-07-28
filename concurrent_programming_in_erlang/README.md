@@ -8,4 +8,4 @@ They are:
 + more numerous
 + more controlled: stack, heap and garbage collection per process.
 
-
+--- Stopped course as my access expired ---
