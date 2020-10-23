@@ -1,0 +1,7 @@
+<h1>Profile for: <%= @user.email %></h1>
+
+<%= form_for @conn, Routes.lobby_path(@conn, :new), fn _f -> %>
+  <div class="submit">
+    <%= submit "New Game" %>
+  </div>
+<% end %>

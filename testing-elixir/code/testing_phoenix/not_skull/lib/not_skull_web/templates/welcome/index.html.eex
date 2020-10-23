@@ -1,0 +1,7 @@
+<%= if Map.has_key?(@conn.assigns, :current_user) do %>
+  <h1>Dashboard</h1>
+<% else %>
+  <h1>This is Not Skull</h1>
+  <p><%= link("Create account", to: Routes.user_path(@conn, :new)) %></p>
+  <p><%= link("Login", to: Routes.session_path(@conn, :new))%></p>
+<% end %>
