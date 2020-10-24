@@ -15,4 +15,8 @@ cd $HOME/proj/code-along/functional_programming_in_erlang
 
 typer *.erl > /dev/null
 
+cd $HOME/proj/code-along/testing-elixir/code/unit_tests/soggy_waffle
+
+mix test
+
 cd $CURRENT_DIRECTORY
