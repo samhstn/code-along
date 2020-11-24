@@ -105,3 +105,5 @@ To see all the code that our call is expanded in to,
 install `cargo-expand` with `$ cargo install cargo-expand`.
 
 And run it with `$ cargo expand`.
+
+We can run our Mars Calculator with `$ cargo run`.
