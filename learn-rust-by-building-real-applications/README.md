@@ -107,3 +107,19 @@ install `cargo-expand` with `$ cargo install cargo-expand`.
 And run it with `$ cargo expand`.
 
 We can run our Mars Calculator with `$ cargo run`.
+
+All variables default to being immutable and can be made mutable by prepending  variables with the `mut` keyword.
+
+We can access the standard library in rust at: https://doc.rust-lang.org/stable/std/
+
+Ownership is a very important concepts in Rust. There are 3 rules for ownership:
+
+1. Each value in Rust is owned by a variable.
+2. When the owner goes out of scope, the value will be deallocated.
+3. There can only be ONE owner at a time.
+
+Rust has the concept of references, which allow us to refer to a value without taking ownership of it.
+We can do this by adding an '&' before the type.
+Passing references as parameters is called borrowing.
+
+Data can't be mutated unless explicitly in rust which prevents data races at compile time.
