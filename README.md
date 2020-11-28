@@ -17,3 +17,4 @@ Beginner go-tos look for programming resources:
 + Haskell - http://learnyouahaskell.com/
 + Prolog - http://www.learnprolognow.org/
 + Postgresql - https://www.postgresqltutorial.com/
++ Rust - https://doc.rust-lang.org/stable/book/
