@@ -123,3 +123,13 @@ We can do this by adding an '&' before the type.
 Passing references as parameters is called borrowing.
 
 Data can't be mutated unless explicitly in rust which prevents data races at compile time.
+
+When we pass a variable in to a function (say the `dbg!` macro), we pass ownership to that macro.
+
+To pass a reference, instead of transferring ownership, we can pass in the variable with a `&`:
+
+```rs
+dbg!(&string);
+```
+
+Rust `enum` type has a finite set of values where the possible set of values is called its variance.
