@@ -133,3 +133,11 @@ dbg!(&string);
 ```
 
 Rust `enum` type has a finite set of values where the possible set of values is called its variance.
+
+Rust has a result type which handles recoverable errors, rust does not support enums.
+
+We can test our tcp connection by running:
+
+```bash
+echo "TEST" | netcat 127.0.0.1 8080
+```
