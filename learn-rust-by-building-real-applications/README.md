@@ -141,3 +141,29 @@ We can test our tcp connection by running:
 ```bash
 echo "TEST" | netcat 127.0.0.1 8080
 ```
+
+Note:
+```
+// implementation of display trait
+println!("{}");
+
+// implementation of the debug trait
+println!("{:?}");
+```
+
+#### Lifetimes
+
+Lifetimes are unique to Rust, no other language uses this idea.
+It ensures that the references don't outlive the actual data.
+
+Lifetimes use the `'` syntax.
+
+Lifetimes are a very powerful tool that allows the Rust compiler to guarantee memory saftey.
+The lifetime parameters that we explicitly specify does not allow us to choose how long a value lives,
+it only allows us to communicate to the compiler that some references are related to the same memory
+and are expected to share the same lifetime.
+
+Note: We have to explicitely specify a lifetime for every reference that we store inside of a struct.
+
+A heap allocated dynamic array is called a vector.
+We cannot declare an array if we don't know how many elements there will be at compile time.
