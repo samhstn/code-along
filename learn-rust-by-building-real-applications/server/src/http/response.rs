@@ -1,6 +1,5 @@
 use std::net::TcpStream;
 use std::io::{Write, Result as IoResult};
-use std::fmt::{Display, Formatter, Result as FmtResult};
 
 use super::StatusCode;
 
