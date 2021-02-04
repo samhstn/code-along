@@ -28,3 +28,29 @@ If we're working with arrays and need to update frequently and randomly, conside
 BEAM gives us a toolkit, so typically we don't need as many external dependencies as other environments.
 So, we don't need memcached or Redis. A worker pool, or background job system can be created in 100 lines of code.
 Or we can use libraries.
+
+### Ch 3
+
+We can use the `Access` module for updating nested data structures.
+
+For tic-tac-toe, a great data structure for reads and writes is:
+
+```elixir
+%{
+  {0,0}=>"O", {0,1}=>" ", {0,2}=>" ",
+  {1,0}=>" ", {1,1}=>"X", {1,2}=>" ",
+  {2,0}=>" ", {2,1}=>" ", {2,2}=>" "
+}
+```
+
+Now reads and writes are trivial:
+
+```iex
+iex> board[{1,1}]
+"X"
+iex> Map.put(board, {1, 0}, "0")
+```
+The rule here is to prefer flat data structures to deep ones.
+
+For bank account data structures, instead of updating an account balance, look to store all account transactions,
+and all get requests should receive all (or all since a specific point in time).
