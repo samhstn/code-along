@@ -53,3 +53,7 @@ for (let i = 0; i < numbers.length; i++) {
   }
 }
 ```
+
+Typed arrays - Arrays where each element is some consistent type of value.
+
+Typle - Array-like structure where each element represents some property of a record.
