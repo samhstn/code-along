@@ -63,3 +63,7 @@ Class functions come in 3 forms:
 1. public (default) - This method can be called anywhere, any time.
 2. private - This method can only be called by other methods in this class.
 3. protected - This method can be called by other methods in this class, or by other methods in the child classes.
+
+Type definition files are named: `*.d.ts`.
+
+A typescript convention is to never use `export default` syntax for consistency.
