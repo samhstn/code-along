@@ -57,3 +57,9 @@ for (let i = 0; i < numbers.length; i++) {
 Typed arrays - Arrays where each element is some consistent type of value.
 
 Typle - Array-like structure where each element represents some property of a record.
+
+Class functions come in 3 forms:
+
+1. public (default) - This method can be called anywhere, any time.
+2. private - This method can only be called by other methods in this class.
+3. protected - This method can be called by other methods in this class, or by other methods in the child classes.
