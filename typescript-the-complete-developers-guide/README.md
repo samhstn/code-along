@@ -67,3 +67,29 @@ Class functions come in 3 forms:
 Type definition files are named: `*.d.ts`.
 
 A typescript convention is to never use `export default` syntax for consistency.
+
+Typeguards in typescript can be written as:
+
+```typescript
+if (collection instanceof Array) {
+  ...
+}
+```
+
+or
+
+```typescript
+if (typeof collection === 'string) {
+  ...
+}
+```
+
+#### Interfaces
+Sets up a contract between different classes.
+Use when we have very different objects when we want to work together.
+Promotes loose coupling.
+
+#### Inheritance/ Abstract Classes
+Sets up a contract between different classes.
+Use when we are trying to build up a definition object.
+Strongly couples classes together.
